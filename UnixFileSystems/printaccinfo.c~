@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<pwd.h>
+#include<grp.h>
+#include<fcntl.h>
+int main(int argc,char* argv[])
+{
+struct passwd *p=getpwnam(argv[1]);
+uid_t uid=p->pw_uid;
+struct passwd *n=getpwuid(uid);
+char *name=n->pw_name;
+char *pass=n->pw_passwd;
+char *info=n->pw_gecos;
+char *dir=n->pw_dir;
+char *shell=n->pw_shell;
+printf("name:%s\n",name);
+printf("passward:%s\n",pass);
+printf("Info:%s\n",info);
+printf("Use id:%d\n",uid);
+return 0;
+}
+
